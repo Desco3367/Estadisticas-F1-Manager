@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
     paths:
       - 'Liga_F1_Data/**'
-      - 'GithubF1.py'          # ⚠️ Cambia esto por el nombre real de tu script Python
+      - 'GithubF1.py'
   workflow_dispatch:
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
           python-version: '3.12'
 
       - name: Ejecutar script generador
-        run: python GithubF1.py   # ⚠️ Mismo nombre que arriba
+        run: python GithubF1.py
 
       - name: Publicar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
