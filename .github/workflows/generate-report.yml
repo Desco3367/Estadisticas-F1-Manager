@@ -1,0 +1,35 @@
+name: Generar y publicar reporte
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'Liga_F1_Data/**'
+      - 'GithubF1.py'          # ⚠️ Cambia esto por el nombre real de tu script Python
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Ejecutar script generador
+        run: python GithubF1.py   # ⚠️ Mismo nombre que arriba
+
+      - name: Publicar en GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          publish_branch: gh-pages
+          force_orphan: true
