@@ -1,3 +1,4 @@
+#FORZAR
 import os
 import json
 import webbrowser
